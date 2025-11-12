@@ -1,0 +1,8 @@
+# Crawling
+selenium
+webdriver_manager
+chromedriver_autoinstaller
+pandas
+numpy
+beautifulsoup4
+requests
