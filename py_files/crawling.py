@@ -52,7 +52,11 @@ def get_news_html_count(ticker, news_count, chrome_options):
                     html_text = driver.find_element(By.XPATH, html_path).get_attribute("href")
                     news_texts.append(news_text)
                     html_paths.append(html_text)
-                    print(f"{len(news_texts)}/{news_count} 뉴스 HTML 수집 성공 !")
+                    print(f"[{len(news_texts)}/{news_count}] 뉴스 HTML 수집 성공 !")
+                i += 1
+
+            except NoSuchElementException:
+                print("No HTML element found")
                 i += 1
 
             except Exception as e:
@@ -95,8 +99,11 @@ def get_news_html_all(ticker, chrome_options):
                 html_text = item.find_element(By.XPATH, html_path).get_attribute("href")
                 news_texts.append(news_text)
                 html_paths.append(html_text)
-                print(f"{len(news_texts)}/{len(items)} 뉴스 HTML 수집 성공 !")
+                print(f"[{len(news_texts)}/{len(items)}] 뉴스 HTML 수집 성공 !")
 
+    except NoSuchElementException:
+        print("No HTML element found")
+    
     except Exception as e:
         print(f"뉴스 검색을 실패했습니다 : {e}")
 
@@ -114,7 +121,7 @@ def _process_table(table_html):
         return df
 
     except Exception as e:
-        print(f">> 테이블 파싱 실패 : {e}")
+        print(f"> 테이블 파싱 실패 : {e}")
         return None 
 
 def _process_elements(elements, text_tags):
@@ -140,13 +147,13 @@ def _process_elements(elements, text_tags):
             testid_attr = element.get_attribute("data-testid")
             # 광고라면
             if 'yf-eondl' in class_attr or 'inarticle-ad' == testid_attr:
-                # print(f">> 광고 태그 발견 - 필터링함")
+                # print(f"> 광고 태그 발견 - 필터링함")
                 pass
             # 광고가 아닌 실제 테이블인 경우
             else:
                 try:
                     table_inside = element.find_element(By.XPATH, ".//table")
-                    print(f">> 내부에 테이블 존재")
+                    print(f"> 내부에 테이블 존재")
                     table_html = table_inside.get_attribute("outerHTML")
                     df = _process_table(table_html)
 
@@ -154,7 +161,7 @@ def _process_elements(elements, text_tags):
                         local_scraped_content.append(df)
                     
                 except NoSuchElementException:
-                    print(f">> 내부에 테이블 존재하지 않음 - 광고/필터링")
+                    print(f"> 내부에 테이블 존재하지 않음 - 광고/필터링")
         
         elif tag == "figure":
             pass
@@ -166,10 +173,10 @@ def _process_elements(elements, text_tags):
                 if df is not None:
                     local_scraped_content.append(df)
             except Exception as e:
-                print(f">> 테이블 파싱 실패 : {e}")
+                print(f"> 테이블 파싱 실패 : {e}")
 
         else:
-            print(f">> 태그 분류 실패 - {tag}")
+            print(f"> 태그 분류 실패 - {tag}")
             continue
     
     return local_scraped_content, local_article_content
@@ -195,7 +202,7 @@ def get_news_content(html_paths, chrome_options):
         scraped_content = []
         
         try:        
-            print(f"{i}번째 기사 처리 중")
+            print(f"[{i}번째 기사 처리 중]")
             driver.get(url)
 
             # 쿠키 팝업 처리
@@ -265,7 +272,7 @@ def get_news_content(html_paths, chrome_options):
             metadata = {'title' : title, 'editor' : editor, 'date' : date, 'html' : url}
             scraped_news.append({'metadata' : metadata, 'content' : scraped_content})
 
-            print(f">>> {i}번째 기사 처리 완료 ! ({len(scraped_content)}개 요소 발견)")
+            print(f">>> {i}번째 기사 처리 완료 ! ({len(scraped_content)}개 요소)")
 
         except Exception as e:
             print(f"오류 발생 : {e}")

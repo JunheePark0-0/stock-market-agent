@@ -1,9 +1,11 @@
+# General
+ipykernel
+pandas
+
 # Crawling
 selenium
+beautifulsoup4
 webdriver_manager
 chromedriver_autoinstaller
-pandas
-numpy
-beautifulsoup4
 requests
 lxml

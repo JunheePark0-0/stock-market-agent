@@ -11,15 +11,22 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--remote-debugging-port=9222")
 
+tickers = {"NVDA" : 'NVIDIA', 
+           "MSFT" : 'Microsoft', 
+           "TSLA" : 'Tesla', 
+           "LLY" : 'Eli Lilly',
+           "BAC" : 'Bank of America',
+           "KO" : 'Coca-Cola'}
+
 if __name__ == "__main__":
     print("--- 뉴스 수집 시작 ---")
     if len(sys.argv) == 2:
         ticker = sys.argv[1]
-        print(f"{ticker} 종목의 뉴스를 모두 수집합니다.")
+        print(f"{tickers[ticker]} 종목의 뉴스를 모두 수집합니다.")
         news_texts, html_paths = get_news_html_all(ticker, chrome_options)
     else:
         ticker, count = sys.argv[1], int(sys.argv[2])
-        print(f"{ticker} 종목의 뉴스를 {count}개 수집합니다.")
+        print(f"{tickers[ticker]} 종목의 뉴스를 {count}개 수집합니다.")
         news_texts, html_paths = get_news_html_count(ticker, count, chrome_options)
     print("--- 뉴스 html 수집 완료 ---")
     print("--------------------------------")

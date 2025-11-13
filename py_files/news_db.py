@@ -8,23 +8,23 @@ import pandas as pd
 
 create_metadata_table = """
 CREATE TABLE IF NOT EXISTS Articles(
-    article_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-    html TEXT UNIQUE NOT NULL,
-    title TEXT,
-    editor TEXT, 
-    date TEXT
+    article_id INTEGER PRIMARY KEY AUTOINCREMENT, /* 각 기사의 고유 Index */
+    html TEXT UNIQUE NOT NULL, /* 기사의 HTML 주소 */
+    title TEXT, /* 기사의 제목 */
+    editor TEXT, /* 기사의 에디터 */
+    date TEXT /* 기사의 날짜 */
     )
 """
 
 create_content_table = """
 CREATE TABLE IF NOT EXISTS Content(
-    block_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    article_id INTEGER NOT NULL,
-    block_order INTEGER NOT NULL,
-    block_type TEXT NOT NULL,
-    content TEXT NOT NULL,
-    FOREIGN KEY (article_id) REFERENCES Articles (article_id)
-    ON DELETE CASCADE
+    block_id INTEGER PRIMARY KEY AUTOINCREMENT, /* 각 블록의 고유 Index */
+    article_id INTEGER NOT NULL, /* 기사의 고유 Index를 참조 */
+    block_order INTEGER NOT NULL, /* 블록의 순서 (1부터 시작) */
+    block_type TEXT NOT NULL, /* 블록의 타입 (text, table) */
+    content TEXT NOT NULL, /* 블록의 내용 */
+    FOREIGN KEY (article_id) REFERENCES Articles (article_id) /* 두 테이블을 연결 */
+    ON DELETE CASCADE /* 기사가 삭제되면 content 블록도 삭제 */
     )
 """
 
@@ -63,7 +63,7 @@ def save_data_to_db(scraped_news, db_path):
 
                 # Content 테이블에 본문 삽입 
                 for index, item in enumerate(content):
-                    block_order = index
+                    block_order = index + 1 # 1부터 시작하도록 설정
 
                     # 줄글 부분이면 그대로 삽입
                     if isinstance(item, str):
