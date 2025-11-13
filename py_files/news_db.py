@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS Content(
     )
 """
 
-
 def save_data_to_db(scraped_news, db_path):
     """
     스크래핑된 데이터를 받아 SQLite DB로 생성
@@ -106,3 +105,32 @@ def save_data_to_db(scraped_news, db_path):
         if 'conn' in locals() and conn:
             conn.close()
             print("DB 연결 종료")
+
+def compare_news_db(db_path, html_path):
+    """
+    기존에 존재하는 db_path와 새롭게 수집한 html_paths를 비교하여 기존 db에 없는 html만을 반환
+    """
+    query = "SELECT 1 FROM Articles WHERE html = ?"
+
+    conn = None
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        # 쿼리 실행
+        cursor.execute(query, (html_path,))
+
+        # 결과 
+        result = cursor.fetchone() # html 주소가 존재하면 1, 없으면 None
+
+        return result is None # None이면 True, 즉 새로운 기사다 
+    
+    except sqlite3.Error as e:
+        print(f"DB 조회 중 오류 발생 : {e}")
+        return False
+    
+    finally:
+        if conn:
+            conn.close()
+
+        # 
