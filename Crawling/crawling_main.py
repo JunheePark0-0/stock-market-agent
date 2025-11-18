@@ -35,7 +35,7 @@ if __name__ == "__main__":
         news_texts, html_paths = get_news_html_count(ticker, count, chrome_options)
     print("--- 뉴스 html 수집 완료 ---")
     print("--------------------------------")
-    db_path = f"news/{ticker}.db"
+    db_path = f"News/{ticker}.db"
 
     if os.path.exists(db_path): # 이미 존재하는 db라면, 즉 크롤링 결과가 이미 존재한다면
         print("--- html 비교 시작 ---")

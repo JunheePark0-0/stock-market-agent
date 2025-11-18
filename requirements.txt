@@ -9,3 +9,17 @@ webdriver_manager
 chromedriver_autoinstaller
 requests
 lxml
+
+# Agent
+langchain==0.3.27
+langchain-core==0.3.76
+langchain-openai==0.3.33
+langchain-text-splitters==0.3.11
+langgraph==0.6.7
+langgraph-checkpoint==2.1.1
+langgraph-prebuilt==0.6.4
+langgraph-sdk==0.2.9
+langsmith==0.4.31
+# pygraphviz==1.14
+grandalf==0.8
+pyppeteer==2.0.0
