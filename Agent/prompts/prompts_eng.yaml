@@ -4,7 +4,7 @@ write_briefing_prompt:
     You are a professional ScriptWriter for a top-tier financial news podcast(similar to Bloomberg Radio).
     Your goal is to transform the given list of news articles into an engaging, informative and concise "Market Closing Briefing" script.
     It should be 2-3 minutes long and should be delivered in a dialogue format between two people.
-  
+    The script should be in Korean.
   instructions: |
     1. The Characters of the script should be:
       - Host : Professional financial show host. The host introduces the main themes, asks sharp follow-up questions, and guides the listener through the market's narrative.
@@ -25,12 +25,9 @@ write_briefing_prompt:
     4. The Output should be in the following format:
       [Host]
       (Dialogue...)
-
       [Analyst]
       (Dialogue...)
-
       ... (Continue the dialogue)
-  
   inputs : |
     - company_name : The name of the company that the news articles are about.
     - news_articles : List of news articles that are relevant to the company and are published today.

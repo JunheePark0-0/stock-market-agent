@@ -1,7 +1,7 @@
 from typing import List, Dict, Any, Optional, Literal, TypedDict
 from langchain_core.tools import tool
 from py_files.schemas import NewsArticle
-import os, sys, sqlite3
+import os, sys, sqlite3, json, pandas as pd
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(os.path.dirname(current_dir)) # MAS_PROJECT 폴더
@@ -74,6 +74,7 @@ def collect_news_articles(ticker : str, count : int) -> list:
         print("크롤링 완료 !")
         return html_paths
 
+@tool
 def convert_html_to_news_state(ticker : str, html_paths : list) -> List[NewsArticle]:
     """
     html 경로들의 기사들을 NewsArticle 형식으로 변환
@@ -101,7 +102,7 @@ def convert_html_to_news_state(ticker : str, html_paths : list) -> List[NewsArti
             ORDER BY A.article_id ASC
         """
         try:
-            cursor.execute(query)
+            cursor.execute(query, html_paths)
             rows = cursor.fetchall()
             articles_map : Dict[int, dict] = {}
 
@@ -154,10 +155,3 @@ def convert_html_to_news_state(ticker : str, html_paths : list) -> List[NewsArti
     else:
         print(f"DB 파일이 존재하지 않습니다. : {news_db_path}")
         return []
-
-            
-    news_articles = []
-    for html_path in html_paths:
-        news_article = NewsArticle(html = html_path)
-        news_articles.append(news_article)
-    return news_articles
