@@ -32,7 +32,7 @@ def collect_news_articles(ticker : str, count : int) -> list:
     """
     정해진 개수의 뉴스 수집 -> 새로운 뉴스 필터링 -> 해당 뉴스들의 html 반환 NewsArticle 형식으로 변환
     """
-    print("--- 뉴스 수집 시작 ---")
+    # print("--- 뉴스 수집 시작 ---")
     company_name = tickers[ticker]
     print(f"{company_name}의 뉴스를 {count}개 수집합니다.")
     news_texts, html_paths = get_news_html_count(ticker, count, chrome_options)
@@ -40,39 +40,44 @@ def collect_news_articles(ticker : str, count : int) -> list:
     print("--------------------------------")
     db_path = f"News/{ticker}.db"
 
-    if os.path.exists(db_path): # 이미 존재하는 db라면, 즉 크롤링 결과가 이미 존재한다면
-        print("--- html 비교 시작 ---")
-        new_html_paths = [path for path in html_paths if compare_news_db(db_path, path)]
-        if len(new_html_paths) == 0:
-            print("새로운 뉴스가 없습니다. 크롤링을 종료합니다.")
-            exit()
-        print(f"새로운 뉴스 {len(new_html_paths)}개를 찾았습니다.")
-        print("--- html 비교 완료 ---")
-        print("--------------------------------")
-        print("--- 뉴스 내용 수집 시작 ---")
-        scraped_news = get_news_content(new_html_paths, chrome_options)
-        print("--- 뉴스 내용 수집 완료 ---")
-        print("--------------------------------")
-        print("--- 뉴스 DB 저장 시작 ---")
-        save_data_to_db(scraped_news, db_path)
-        print("--- 뉴스 DB 저장 완료 ---")
-        print("--------------------------------")
-        print("크롤링 완료 !")
-        return new_html_paths
+    # if os.path.exists(db_path): # 이미 존재하는 db라면, 즉 크롤링 결과가 이미 존재한다면
+    #     print("--- html 비교 시작 ---")
+    #     new_html_paths = [path for path in html_paths if compare_news_db(db_path, path)]
+    #     if len(new_html_paths) == 0:
+    #         print("새로운 뉴스가 없습니다. 크롤링을 종료합니다.")
+    #         exit()
 
-    else: # 새롭게 수집해오는 기업인 경우
-        print("--- DB를 새롭게 생성합니다 ---")
-        print("--------------------------------")
-        print("--- 뉴스 내용 수집 시작 ---")
-        scraped_news = get_news_content(html_paths, chrome_options)
-        print("--- 뉴스 내용 수집 완료 ---")
-        print("--------------------------------")
-        print("--- 뉴스 DB 저장 시작 ---")
-        save_data_to_db(scraped_news, db_path)
-        print("--- 뉴스 DB 저장 완료 ---")
-        print("--------------------------------")
-        print("크롤링 완료 !")
-        return html_paths
+    #     print(f"새로운 뉴스 {len(new_html_paths)}개를 찾았습니다.")
+    #     print("--- html 비교 완료 ---")
+    #     print("--------------------------------")
+    #     print("--- 뉴스 내용 수집 시작 ---")
+    #     scraped_news = get_news_content(new_html_paths, chrome_options)
+    #     print("--- 뉴스 내용 수집 완료 ---")
+    #     print("--------------------------------")
+    #     print("--- 뉴스 DB 저장 시작 ---")
+    #     save_data_to_db(scraped_news, db_path)
+    #     print("--- 뉴스 DB 저장 완료 ---")
+    #     print("--------------------------------")
+    #     print("크롤링 완료 !")
+    #     return new_html_paths
+
+    # else: # 새롭게 수집해오는 기업인 경우
+    #     print("--- DB를 새롭게 생성합니다 ---")
+    #     print("--------------------------------")
+    #     print("--- 뉴스 내용 수집 시작 ---")
+    #     scraped_news = get_news_content(html_paths, chrome_options)
+    #     print("--- 뉴스 내용 수집 완료 ---")
+    #     print("--------------------------------")
+    #     print("--- 뉴스 DB 저장 시작 ---")
+    #     save_data_to_db(scraped_news, db_path)
+    #     print("--- 뉴스 DB 저장 완료 ---")
+    #     print("--------------------------------")
+    #     print("크롤링 완료 !")
+    #     return html_paths
+
+    scraped_news = get_news_content(html_paths, chrome_options)
+    save_data_to_db(scraped_news, db_path)
+    return html_paths
 
 @tool
 def convert_html_to_news_state(ticker : str, html_paths : list) -> List[NewsArticle]:

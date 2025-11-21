@@ -31,3 +31,42 @@ def write_briefing(ticker : str, new_articles : List[NewsArticle]) -> str:
     response = llm.invoke(messages)
 
     return response.content
+
+@tool
+def save_briefing_txt(ticker : str, briefing : str) -> str:
+    """
+    특정 날짜의 장 마감 브리핑을 .txt 파일로 저장
+    """
+    import sys, os
+    import datetime 
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.dirname(os.path.dirname(current_dir)) # MAS_PROJECT 폴더
+    save_dir = os.path.join(root_dir, "Briefings", ticker)
+    os.makedirs(save_dir, exist_ok = True)
+
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    txt_content = f"# [{today}] {ticker} 장 마감 브리핑\n\n{briefing}"
+    
+    with open(os.path.join(save_dir, f"{today}.txt"), "w", encoding = "utf-8") as f:
+        f.write(txt_content)
+    return f"장 마감 브리핑이 저장되었습니다."
+
+@tool
+def save_briefing_md(ticker : str, briefing : str) -> str:
+    """
+    특정 날짜의 장 마감 브리핑을 .md 파일로 저장
+    """
+    import sys, os
+    import datetime 
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.dirname(os.path.dirname(current_dir)) # MAS_PROJECT 폴더
+    save_dir = os.path.join(root_dir, "Briefings", ticker)
+    os.makedirs(save_dir, exist_ok = True)
+
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    md_content = f"# [{today}] {ticker} 장 마감 브리핑\n\n{briefing}"
+
+    with open(os.path.join(save_dir, f"{today}.md"), "w", encoding = "utf-8") as f:
+        f.write(md_content)
+    return f"장 마감 브리핑이 저장되었습니다."
+
