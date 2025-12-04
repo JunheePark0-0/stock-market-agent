@@ -1,0 +1,25 @@
+{
+    "document_type": "4",
+    "period_of_report": "2025-11-12",
+    "company_name": "Apple Inc.",
+    "ticker": "AAPL",
+    "reporter_name": "Adams Katherine L.",
+    "reporter_title": "SVP, GC and Secretary",
+    "is_officer": true,
+    "is_director": false,
+    "is_ten_percent": false,
+    "transactions": [
+        {
+            "type": "Non-Derivative",
+            "security_title": "Common Stock",
+            "date": "2025-11-12",
+            "code": "G",
+            "action": "D",
+            "shares": 3750.0,
+            "price": 0.0,
+            "shares_owned_after": 175408.0,
+            "ownership_nature": "D",
+            "remarks": ""
+        }
+    ]
+}

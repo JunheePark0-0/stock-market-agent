@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><edgarSubmission xmlns="http://www.sec.gov/edgar/ownership" xmlns:com="http://www.sec.gov/edgar/common">
+  <headerData>
+    <submissionType>144</submissionType>
+    <filerInfo>
+      <filer>
+        <filerCredentials>
+          <cik>0001197652</cik>
+          <ccc>XXXXXXXX</ccc>
+        </filerCredentials>
+      </filer>
+      <liveTestFlag>LIVE</liveTestFlag>
+
+
+    </filerInfo>
+  </headerData>
+  <formData>
+    <issuerInfo>
+      <issuerCik>0001045810</issuerCik>
+      <issuerName>NVIDIA CORP</issuerName>
+      <secFileNumber>000-23985</secFileNumber>
+      <issuerAddress>
+        <com:street1>2788 SAN TOMAS EXPRESSWAY</com:street1>
+        <com:city>SANTA CLARA</com:city>
+        <com:stateOrCountry>CA</com:stateOrCountry>
+        <com:zipCode>95051</com:zipCode>
+      </issuerAddress>
+      <issuerContactPhone>408-486-2000</issuerContactPhone>
+      <nameOfPersonForWhoseAccountTheSecuritiesAreToBeSold>SEAWELL A BROOKE</nameOfPersonForWhoseAccountTheSecuritiesAreToBeSold>
+      <relationshipsToIssuer>
+        <relationshipToIssuer>Director</relationshipToIssuer>
+      </relationshipsToIssuer>
+    </issuerInfo>
+    <securitiesInformation>
+      <securitiesClassTitle>Common</securitiesClassTitle>
+      <brokerOrMarketmakerDetails>
+        <name>Rockefeller Capital Management</name>
+        <address>
+          <com:street1>Two Embarcadero Center Suite 2320</com:street1>
+          <com:city>San Francisco</com:city>
+          <com:stateOrCountry>CA</com:stateOrCountry>
+          <com:zipCode>94111</com:zipCode>
+        </address>
+      </brokerOrMarketmakerDetails>
+      <noOfUnitsSold>12728</noOfUnitsSold>
+      <aggregateMarketValue>2341117.18</aggregateMarketValue>
+      <noOfUnitsOutstanding>24300000000</noOfUnitsOutstanding>
+      <approxSaleDate>12/02/2025</approxSaleDate>
+      <securitiesExchangeName>NASDAQ</securitiesExchangeName>
+    </securitiesInformation>
+    <securitiesToBeSold>
+      <securitiesClassTitle>Common</securitiesClassTitle>
+      <acquiredDate>08/12/2004</acquiredDate>
+      <natureOfAcquisitionTransaction>Stock Options</natureOfAcquisitionTransaction>
+      <nameOfPersonfromWhomAcquired>NVDA</nameOfPersonfromWhomAcquired>
+      <isGiftTransaction>N</isGiftTransaction>
+      <amountOfSecuritiesAcquired>12728</amountOfSecuritiesAcquired>
+      <paymentDate>08/12/2004</paymentDate>
+      <natureOfPayment>cash/check</natureOfPayment>
+    </securitiesToBeSold>
+    <nothingToReportFlagOnSecuritiesSoldInPast3Months>Y</nothingToReportFlagOnSecuritiesSoldInPast3Months>
+    <remarks>Shares sold from the following Trust account: ROSEMARY AND A. BROOKE SEAWELL REV TR</remarks>
+    <noticeSignature>
+      <noticeDate>12/02/2025</noticeDate>
+      <signature>Carmen Zamores as a duly authorized representative of National Financial Services LLC, as attorney-in-fact for SEAWELL A BROOKE</signature>
+    </noticeSignature>
+  </formData>
+</edgarSubmission>

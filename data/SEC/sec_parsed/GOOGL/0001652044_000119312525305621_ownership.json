@@ -1,0 +1,25 @@
+{
+    "document_type": "4",
+    "period_of_report": "2025-12-02",
+    "company_name": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "reporter_name": "O'Toole Amie Thuener",
+    "reporter_title": "VP, Chief Accounting Officer",
+    "is_officer": false,
+    "is_director": false,
+    "is_ten_percent": false,
+    "transactions": [
+        {
+            "type": "Non-Derivative",
+            "security_title": "Class C Capital Stock",
+            "date": "2025-12-02",
+            "code": "S",
+            "action": "D",
+            "shares": 954.0,
+            "price": 317.0,
+            "shares_owned_after": 11740.0,
+            "ownership_nature": "D",
+            "remarks": "The price reported in Column 4 is a weighted average price. These shares were sold in multiple transactions at prices ranging from $317 to $318, inclusive. The Reporting Person undertakes to provide to any security holder of Alphabet Inc. or the staff of the Securities and Exchange Commission, upon request, full information regarding the number of shares sold at each separate price within the ranges set forth in footnote (1)."
+        }
+    ]
+}
