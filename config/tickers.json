@@ -1,0 +1,5 @@
+{
+    "tickers" : ["NVDA", "MSFT", "TSLA", "LLY", "BAC", "KO", "META", "AAPL", "GOOG"],
+    "schedule_time" : "06:00",
+    "timezone" : "Asia/Seoul"
+}
