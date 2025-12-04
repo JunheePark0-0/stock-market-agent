@@ -1,6 +1,6 @@
 from typing import List
 import pandas as pd
-from py_files.schemas import NewsArticle
+from src.Agent.schemas import NewsArticle
 
 # 프롬프트 로드 함수
 def load_prompts(name : str):
@@ -17,7 +17,7 @@ def load_prompts(name : str):
 
 def format_news_articles(news_articles : List[NewsArticle]) -> str:
     """
-    NewsArticle 형식의 뉴스 기사들을 LLM이 이해할 수 있는 문자열 하나나로 변환
+    NewsArticle 형식의 뉴스 기사들을 LLM이 이해할 수 있는 문자열 하나로 변환
     DataFrame 형식의 표는 Markdown 형식으로 변환
     """
     formatted_text = ""
